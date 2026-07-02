@@ -85,7 +85,7 @@ jobs:
               npm --prefix ./client/tests/integration ci
           fi
           if [[ ! -e ~/.cache/ms-playwright ]]; then
-              npm --prefix ./client/tests/integration exec playwright install chromium
+              npm --prefix ./client/tests/integration exec playwright install chromium-headless-shell
           fi
           echo "playwright install done"
           ls ~/.cache/ms-playwright
