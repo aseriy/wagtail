@@ -9,11 +9,7 @@ const DIR = path.join(os.tmpdir(), 'jest_playwright_global_setup');
  * Custom Playwright setup for Jest integration.
  */
 module.exports = async () => {
-  const browserServer = await chromium.launchServer(
-    {
-      channel: 'chrome'
-    }
-  );
+  const browserServer = await chromium.launchServer({ channel: 'chrome' });
 
   // store the browser server instance so we can teardown it later
   // this global is only available in the teardown but not in TestEnvironments
