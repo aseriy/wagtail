@@ -80,17 +80,14 @@ jobs:
       - restore_cache:
           key: &ui_tests-npm-cache ui_tests-npm_integration-v3-{{ checksum "client/tests/integration/package-lock.json" }}
       # Only install if node_modules wasn’t cached.
+      - run: which google-chrome || which chromium-browser || which chromium
       - run: |
-          ls -l ~/.cache/ms-playwright
           if [[ ! -e "client/tests/integration/node_modules" ]]; then
-              ls -l client/tests/integration/node_modules
               npm --prefix ./client/tests/integration ci
           fi
           if [[ ! -e ~/.cache/ms-playwright ]]; then
-              npm --prefix ./client/tests/integration exec playwright install chromium-headless-shell
+              npm --prefix ./client/tests/integration exec playwright install
           fi
-          echo "playwright install done"
-          ls -l ~/.cache/ms-playwright
       - save_cache:
           key: *ui_tests-npm-cache
           paths:
