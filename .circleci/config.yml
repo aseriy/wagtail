@@ -87,6 +87,8 @@ jobs:
           if [[ ! -e ~/.cache/ms-playwright ]]; then
               npm --prefix ./client/tests/integration exec playwright install chromium
           fi
+          echo "playwright install done"
+          ls ~/.cache/ms-playwright
       - save_cache:
           key: *ui_tests-npm-cache
           paths:
